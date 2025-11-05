@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="10.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="9.0.10" />
+    <PackageReference Include="NLog" Version="6.0.5" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="6.0.5" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.6" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="9.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Employee.Management.System.Common.Api\Employee.Management.System.Common.Api.csproj" />
+    <ProjectReference Include="..\..\Common\Employee.Management.System.Common.Core\Employee.Management.System.Common.Core.csproj" />
+    <ProjectReference Include="..\..\Common\Employee.Management.System.Common.Data\Employee.Management.System.Common.Data.csproj" />
+    <ProjectReference Include="..\..\Common\Employee.Management.System.Common.Logging\Employee.Management.System.Common.Logging.csproj" />
+    <ProjectReference Include="..\..\Domain\Employee.Management.System.Domain.Core\Employee.Management.System.Domain.Core.csproj" />
+    <ProjectReference Include="..\..\Domain\Employee.Management.System.Domain.Infrastructure\Employee.Management.System.Domain.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Domain\Employee.Management.System.Domain.Models\Employee.Management.System.Domain.Models.csproj" />
+    <ProjectReference Include="..\Employee.Management.System.ApiModels\Employee.Management.System.ApiModels.csproj" />
+  </ItemGroup>
+
+</Project>

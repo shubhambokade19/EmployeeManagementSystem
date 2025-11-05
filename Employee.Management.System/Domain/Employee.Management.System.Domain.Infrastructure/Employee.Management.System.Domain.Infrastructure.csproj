@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Employee.Management.System.Common.Core\Employee.Management.System.Common.Core.csproj" />
+    <ProjectReference Include="..\..\Common\Employee.Management.System.Common.Data\Employee.Management.System.Common.Data.csproj" />
+    <ProjectReference Include="..\..\Common\Employee.Management.System.Common.Email\Employee.Management.System.Common.Email.csproj" />
+    <ProjectReference Include="..\..\Common\Employee.Management.System.Common.Helpers\Employee.Management.System.Common.Helpers.csproj" />
+    <ProjectReference Include="..\Employee.Management.System.Domain.Core\Employee.Management.System.Domain.Core.csproj" />
+    <ProjectReference Include="..\Employee.Management.System.Domain.Models\Employee.Management.System.Domain.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Search\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.3.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.14.0" />
+  </ItemGroup>
+
+</Project>

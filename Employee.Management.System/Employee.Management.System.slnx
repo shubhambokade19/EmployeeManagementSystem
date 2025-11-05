@@ -1,0 +1,13 @@
+<Solution>
+  <Project Path="Api/Employee.Management.System.Api/Employee.Management.System.Api.csproj" Id="58abd47c-c8bd-45ab-b344-d232bb170189" />
+  <Project Path="Api/Employee.Management.System.ApiModels/Employee.Management.System.ApiModels.csproj" Id="a8f9b826-bb08-45dc-a5a7-53d03718766e" />
+  <Project Path="Common/Employee.Management.System.Common.Api/Employee.Management.System.Common.Api.csproj" Id="3036f970-d1fc-4c53-9725-1707cf17c48d" />
+  <Project Path="Common/Employee.Management.System.Common.Core/Employee.Management.System.Common.Core.csproj" Id="3b7b1264-d2f5-43c7-966a-be0d0877daaf" />
+  <Project Path="Common/Employee.Management.System.Common.Data/Employee.Management.System.Common.Data.csproj" Id="4282638a-2cdf-4205-b36f-537277493462" />
+  <Project Path="Common/Employee.Management.System.Common.Email/Employee.Management.System.Common.Email.csproj" Id="f0b72f44-81b5-4b97-a23a-8a6972d10fb3" />
+  <Project Path="Common/Employee.Management.System.Common.Helpers/Employee.Management.System.Common.Helpers.csproj" Id="d511622d-35e5-4b24-96af-201fafbae14c" />
+  <Project Path="Common/Employee.Management.System.Common.Logging/Employee.Management.System.Common.Logging.csproj" Id="3f352f9a-b8bc-40eb-8b73-853ea072e4c9" />
+  <Project Path="Domain/Employee.Management.System.Domain.Core/Employee.Management.System.Domain.Core.csproj" Id="ef08b981-c609-49e7-9125-3ff6b0642a95" />
+  <Project Path="Domain/Employee.Management.System.Domain.Infrastructure/Employee.Management.System.Domain.Infrastructure.csproj" Id="2e3f3691-0127-4c69-b100-4705bad33e2f" />
+  <Project Path="Domain/Employee.Management.System.Domain.Models/Employee.Management.System.Domain.Models.csproj" Id="c068d223-5633-41ab-95d2-a64113746833" />
+</Solution>

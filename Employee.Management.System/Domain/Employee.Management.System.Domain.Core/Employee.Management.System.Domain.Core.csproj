@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Employee.Management.System.Common.Core\Employee.Management.System.Common.Core.csproj" />
+    <ProjectReference Include="..\Employee.Management.System.Domain.Models\Employee.Management.System.Domain.Models.csproj" />
+  </ItemGroup>
+
+</Project>

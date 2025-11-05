@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Employee.Management.System.Common.Api\Employee.Management.System.Common.Api.csproj" />
+    <ProjectReference Include="..\Employee.Management.System.Common.Helpers\Employee.Management.System.Common.Helpers.csproj" />
+    <ProjectReference Include="..\Employee.Management.System.Common.Logging\Employee.Management.System.Common.Logging.csproj" />
+  </ItemGroup>
+
+</Project>
