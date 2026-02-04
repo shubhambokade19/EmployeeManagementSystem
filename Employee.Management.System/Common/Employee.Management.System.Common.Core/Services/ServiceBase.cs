@@ -59,6 +59,6 @@ namespace Employee.Management.System.Common.Core.Services
 
         public abstract Task<TEntity> GetByIdAsync(Session session, long id, bool includeEmbeddedObjects = false);
 
-        public abstract Task<IEnumerable<TEntity>> GetBySearchAsync(Session session, SearchRequest searchRequest);
+        public abstract Task<IEnumerable<TEntity>> GetBySearchAsync<T>(Session session, SearchRequest searchRequest);
     }
 }

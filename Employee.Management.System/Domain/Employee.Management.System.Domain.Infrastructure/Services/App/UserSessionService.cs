@@ -58,7 +58,7 @@ namespace Employee.Management.System.Domain.Infrastructure.Services.App
 
                 await session.OpenConnection();
 
-                // Get User login data for mapping into session
+                // Get User login data for mapping into session b
                 var userLoginDetails = await userLoginRepository.GetUserBySessionIdAndUserIdAsync(session, sessionId, session.UserId);
 
                 if (userLoginDetails == null)

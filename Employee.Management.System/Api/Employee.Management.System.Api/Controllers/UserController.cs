@@ -48,5 +48,32 @@ namespace Employee.Management.System.Api.Controllers
                 logContext.StopInfo();
             }
         }
+
+        [HttpPost("search", Name = "SearchUser")]
+        public async Task<ActionResult> SearchUser([FromBody] SearchRequest searchRequest)
+        {
+            var logContext = new LogContext("UserController.SearchUser");
+            logContext.StartInfo();
+            try
+            {
+                using var session = await GetSessionAsync().ConfigureAwait(false);
+                var result = await userApiService.SearchAsync(session, searchRequest).ConfigureAwait(false);
+                return Ok(result);
+            }
+            catch (ApiException ex)
+            {
+                LogHelper.Error(logContext, ex);
+                return StatusCode((int)ex.StatusCode, ex.ErrorList);
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(logContext, ex);
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+            finally
+            {
+                logContext.StopInfo();
+            }
+        }
     }
 }

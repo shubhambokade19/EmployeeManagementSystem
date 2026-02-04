@@ -9,6 +9,6 @@ namespace Employee.Management.System.Common.Core.Services
         Task<bool> ActivateAsync(Session session, string[] idList);
         Task<bool> InactivateAsync(Session session, string[] idList);
         Task<TEntity> GetByIdAsync(Session session, long id, bool includeEmbeddedObjects = false);
-        Task<IEnumerable<TEntity>> GetBySearchAsync(Session session, SearchRequest searchRequest);
+        Task<IEnumerable<TEntity>> GetBySearchAsync<T>(Session session, SearchRequest searchRequest);
     }
 }

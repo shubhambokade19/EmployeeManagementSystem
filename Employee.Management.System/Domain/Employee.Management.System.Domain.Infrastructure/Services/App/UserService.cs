@@ -5,6 +5,7 @@ using Employee.Management.System.Common.Helpers;
 using Employee.Management.System.Common.Logging;
 using Employee.Management.System.Domain.Core.Repositories.App;
 using Employee.Management.System.Domain.Core.Services.App;
+using Employee.Management.System.Domain.Infrastructure.Search.App;
 using Employee.Management.System.Domain.Models.App;
 using Microsoft.AspNetCore.Http;
 using System.Net;
@@ -50,9 +51,44 @@ namespace Employee.Management.System.Domain.Infrastructure.Services.App
             throw new NotImplementedException();
         }
 
-        public override Task<IEnumerable<User>> GetBySearchAsync(Session session, SearchRequest searchRequest)
+        public async override Task<IEnumerable<User>> GetBySearchAsync<T>(Session session, SearchRequest searchRequest)
         {
-            throw new NotImplementedException();
+            var logContext = new LogContext("UserService.GetBySearchAsync");
+            logContext.StartDebug();
+            try
+            {
+                logContext.StartTrace("Validating SearchRequest ...");
+                if (!UserSearch.Validate(searchRequest))
+                {
+                    throw new ApiException($"Unsupported search request {searchRequest?.Intent}");
+                }
+                logContext.StopTrace();
+
+                logContext.StartTrace("Obtaining Sql Statement ...");
+                var sqlStatement = UserSearch.GetSqlStatement(session, searchRequest);
+                if (string.IsNullOrEmpty(sqlStatement)) return [];
+                logContext.StopTrace();
+
+                logContext.StartTrace("Obtaining data ...");
+                await session.OpenConnection();
+
+                var list = await userRepository.GetBySqlStatementAsync<User>(session, sqlStatement);
+
+                session.CloseConnection();
+                logContext.StopTrace();
+
+                return list;
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(logContext, ex);
+                throw;
+            }
+            finally
+            {
+                session.CloseConnection();
+                logContext.StopDebug($"{searchRequest.Intent} Completed");
+            }
         }
 
         public override Task<bool> InactivateAsync(Session session, string[] idList)
@@ -226,7 +262,7 @@ namespace Employee.Management.System.Domain.Infrastructure.Services.App
                 // check user is already logged in or not
                 var isUserLoggedIn = await userLoginRepository.IsUserLoggedInAsync(session, entity.UserId);
 
-                //If user is already log in then log out
+                //If user is already log in then log out    
                 if (isUserLoggedIn)
                 {
                     // Update EndTimeStamp

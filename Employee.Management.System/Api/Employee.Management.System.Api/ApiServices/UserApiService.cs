@@ -38,5 +38,25 @@ namespace Employee.Management.System.Api.ApiServices
                 logContext.StopDebug($"Completed {methodContext}");
             }
         }
+
+        public async Task<List<User>> SearchAsync(Session session, SearchRequest searchRequest)
+        {
+            var logContext = new LogContext(session, "UserApiService.SearchAsync");
+            logContext.StartDebug();
+            try
+            {
+                var list = (await userService.GetBySearchAsync<User>(session, searchRequest)).ToList();
+                return list;
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(logContext, ex);
+                throw;
+            }
+            finally
+            {
+                logContext.StopDebug("Completed");
+            }
+        }
     }
 }
