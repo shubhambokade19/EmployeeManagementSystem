@@ -4,10 +4,10 @@ using Employee.Management.System.Api.Container;
 using Employee.Management.System.Common.Logging;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
 using NLog;
 using NLog.Web;
+using NSwag;
 using System.Text;
 
 var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
@@ -80,44 +80,21 @@ try
 
     builder.Services.AddAuthorization();
 
-    builder.Services.AddSwaggerGen(c =>
+    builder.Services.AddOpenApiDocument(config =>
     {
-        c.SwaggerDoc("v1", new OpenApiInfo
-        {
-            Version = "v1",
-            Title = "Employee Management System Api",
-            Description = "API documentation with pre-set JWT authentication"
-        });
+        config.Title = "Employee Management System API";
 
-        // JWT Bearer setup for Swagger
-        var securityScheme = new OpenApiSecurityScheme
+        config.AddSecurity("JWT", new OpenApiSecurityScheme
         {
-            Name = "Authorization",
-            Type = SecuritySchemeType.Http,
+            Type = OpenApiSecuritySchemeType.Http,
             Scheme = "bearer",
             BearerFormat = "JWT",
-            In = ParameterLocation.Header,
-            Description = "JWT Authorization header using the Bearer scheme."
-        };
+            In = OpenApiSecurityApiKeyLocation.Header
+        });
 
-        c.AddSecurityDefinition("Bearer", securityScheme);
-
-        var securityRequirement = new OpenApiSecurityRequirement
-        {
-            {
-                new OpenApiSecurityScheme
-                {
-                    Reference = new OpenApiReference
-                    {
-                        Type = ReferenceType.SecurityScheme,
-                        Id = "Bearer"
-                    }
-                },
-                new string[] {}
-            }
-        };
-
-        c.AddSecurityRequirement(securityRequirement);
+        config.OperationProcessors.Add(
+            new NSwag.Generation.Processors.Security
+                .AspNetCoreOperationSecurityScopeProcessor("JWT"));
     });
 
     builder.Services.AddSwaggerGenNewtonsoftSupport();
@@ -145,12 +122,8 @@ try
     // Configure the HTTP request pipeline.
     if (app.Environment.IsDevelopment())
     {
-        app.UseDeveloperExceptionPage();
-        app.UseSwagger();
-        app.UseSwaggerUI(c =>
-        {
-            c.SwaggerEndpoint("/swagger/v1/swagger.json", "Employee Management System Api V1");
-        });
+        app.UseOpenApi();
+        app.UseSwaggerUI();
     }
     else
     {
